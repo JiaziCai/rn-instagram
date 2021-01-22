@@ -9,7 +9,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 import Feed from "./main/Feed";
-import Profile from "./main/Profle";
+import Profile from "./main/Profile";
 
 const Empty = () => {
   return null;

@@ -99,7 +99,11 @@ export default class App extends Component {
               component={Add}
               navigation={this.props.navigation}
             />
-            <Stack.Screen name='Save' component={Save} />
+            <Stack.Screen
+              name='Save'
+              component={Save}
+              navigation={this.props.navigation}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
