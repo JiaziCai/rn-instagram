@@ -6,6 +6,15 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import * as firebase from "firebase";
 
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+
+import rootReducer from "./redux/reducers";
+import thunk from "redux-thunk";
+import Add from "./components/main/Add";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 const firebaseConfig = {
   apiKey: "AIzaSyBrdGuOrUhk8YVQdHdO7zyJisd-hUVouAM",
   authDomain: "rn-instagram-d88fb.firebaseapp.com",
@@ -22,6 +31,8 @@ if (firebase.apps.length === 0) {
 
 import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
+import Main from "./components/Main";
+import Save from "./components/main/Save";
 
 const Stack = createStackNavigator();
 
@@ -75,9 +86,23 @@ export default class App extends Component {
     }
 
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text>User is logged in </Text>
-      </View>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Main'>
+            <Stack.Screen
+              name='Landing'
+              component={Main}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='Add'
+              component={Add}
+              navigation={this.props.navigation}
+            />
+            <Stack.Screen name='Save' component={Save} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }
