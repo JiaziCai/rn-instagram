@@ -12,6 +12,8 @@ import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./redux/reducers";
 import thunk from "redux-thunk";
 import Add from "./components/main/Add";
+import Login from "./components/auth/Login";
+import Comment from "./components/main/Comment";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -80,6 +82,11 @@ export default class App extends Component {
               component={Register}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name='Login'
+              component={Login}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -89,11 +96,7 @@ export default class App extends Component {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Main'>
-            <Stack.Screen
-              name='Landing'
-              component={Main}
-              options={{ headerShown: false }}
-            />
+            <Stack.Screen name='Landing' component={Main} />
             <Stack.Screen
               name='Add'
               component={Add}
@@ -102,6 +105,11 @@ export default class App extends Component {
             <Stack.Screen
               name='Save'
               component={Save}
+              navigation={this.props.navigation}
+            />
+            <Stack.Screen
+              name='Comment'
+              component={Comment}
               navigation={this.props.navigation}
             />
           </Stack.Navigator>

@@ -18,16 +18,14 @@ export default class Login extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result);
-      })
+      .then((result) => {})
       .catch((error) => {
         console.log(error);
       });
   }
   render() {
     return (
-      <View>
+      <View style={{ flex: 1, padding: 100 }}>
         <TextInput
           placeholder='email'
           onChangeText={(email) => this.setState({ email })}

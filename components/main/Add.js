@@ -34,7 +34,6 @@ export default function App({ navigation }) {
       aspect: [1, 1],
       quality: 1,
     });
-    console.log(result);
   };
 
   if (hasCameraPermission === null || hasGalleryPermission === false) {
